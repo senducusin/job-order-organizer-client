@@ -1,0 +1,25 @@
+.category {
+  font-size: small;
+  text-transform: capitalize;
+  font-family: "OpenSans-Regular";
+  color: grey;
+  margin-right: 5px;
+}
+
+.value {
+  font-family: "OpenSans-Bold";
+  font-size: small;
+}
+
+.value-error {
+  font-family: "OpenSans-Bold";
+  font-size: small;
+  color: rgb(200, 0, 0);
+}
+
+.container {
+  margin-bottom: 5px;
+  padding-left: 30px;
+  padding-top: 0px;
+  display: flex;
+}

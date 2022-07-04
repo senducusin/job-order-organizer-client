@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  width: 275px;
+  align-items: center;
+  justify-content: center;
+  font-size: smaller;
+  margin-top: 10px;
+}
+
+.container > button {
+  width: 30%;
+  font-size: smaller;
+  font-family: "OpenSans-Bold";
+  height: 30px;
+  cursor: pointer;
+  color: white;
+  border: none;
+}
+
+.spacer {
+  flex: 1;
+}
+
+/* all */
+
+.button-all {
+  background-color: rgba(38, 40, 48, 1);
+}
+
+.button-all:disabled {
+  background-color: rgba(38, 40, 48, 0.3);
+}
+
+/* in-progress */
+.button-in-progress {
+  background-color: rgb(200, 0, 0);
+}
+
+.button-in-progress:disabled {
+  background-color: rgba(200, 0, 0, 0.3);
+}
+
+/* inspected */
+
+.button-inspected {
+  background-color: #0064d5;
+}
+
+.button-inspected:disabled {
+  background-color: rgba(0, 100, 213, 0.3);
+}

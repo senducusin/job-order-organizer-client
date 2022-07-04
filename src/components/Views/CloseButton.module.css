@@ -1,0 +1,14 @@
+.close {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  margin-right: 10px;
+  float: right;
+}
+
+.close > svg {
+  color: rgb(200, 0, 0);
+}

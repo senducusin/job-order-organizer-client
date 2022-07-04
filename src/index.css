@@ -1,0 +1,42 @@
+@font-face {
+  font-family: OpenSans-Regular;
+  src: url(/public/fonts/OpenSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: OpenSans-Bold;
+  src: url(/public/fonts/OpenSans-Bold.ttf);
+}
+
+* {
+  font-family: OpenSans-Regular;
+}
+
+html,
+body,
+#root,
+.App {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+  height: 8px;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9dacae;
+  -webkit-border-radius: 1ex;
+}
+
+.redFont {
+  color: pink;
+  text-align: center;
+  width: 1000%;
+}

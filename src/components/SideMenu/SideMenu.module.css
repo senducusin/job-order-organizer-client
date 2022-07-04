@@ -1,0 +1,35 @@
+.sidemenu {
+  background-color: #262830;
+  width: 70px;
+  display: flex;
+  flex-direction: column;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.container {
+  padding: 0 5px;
+}
+
+.container > button:hover {
+  color: grey;
+  cursor: pointer;
+}
+
+.export,
+.import {
+  background-color: transparent;
+  color: white;
+  border: none;
+  height: 40px;
+}
+
+.import {
+  border-bottom: solid 1px grey;
+}
+
+.export {
+  margin-bottom: 10px;
+}

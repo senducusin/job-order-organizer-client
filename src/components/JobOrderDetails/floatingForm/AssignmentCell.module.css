@@ -1,0 +1,14 @@
+.continer-non-hover,
+.container {
+  border-bottom: 1px solid lightgray;
+  padding: 5px 0px 0px 0px;
+}
+
+.container {
+  cursor: pointer;
+}
+
+.container:hover,
+.selected {
+  background-color: lightgray;
+}

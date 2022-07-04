@@ -1,0 +1,57 @@
+.cell {
+  padding-top: 15px;
+  min-height: min-content;
+  width: 100%;
+}
+
+li.cell:hover {
+  background: #9dacae;
+  cursor: pointer;
+}
+
+.title {
+  margin-block-start: 0.4em;
+  margin-block-end: 0.4em;
+  text-transform: capitalize;
+  padding: 0px 40px;
+  font-family: OpenSans-Bold;
+  color: #262830;
+}
+
+.subtitle {
+  color: rgb(113, 113, 113);
+  font-size: medium;
+  margin-bottom: 20px;
+  padding: 0px 0px 0px 40px;
+}
+
+.border {
+  margin: 0px 28px 0px 38px;
+  border-bottom: 1px solid rgb(143 143 143 / 20%);
+}
+
+.selected {
+  background: #9dacae;
+}
+
+.container {
+  display: flex;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.status {
+  color: rgb(113, 113, 113);
+  padding: 0px 30px 0px 0px;
+  font-size: medium;
+  font-style: italic;
+}
+
+.status-with-alert {
+  color: rgb(200, 0, 0);
+  padding: 0px 30px 0px 0px;
+  font-size: medium;
+  font-style: italic;
+}

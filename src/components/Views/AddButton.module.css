@@ -1,0 +1,15 @@
+.add {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  padding-right: 0;
+  margin-right: -5px;
+}
+
+.add > svg {
+  height: 24px;
+  color: #262830;
+}

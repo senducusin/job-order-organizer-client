@@ -1,0 +1,26 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.form {
+  flex: 1;
+  padding: 30px;
+}
+
+input,
+textarea {
+  width: 100%;
+}
+
+.section-header {
+  text-decoration: underline;
+  margin-bottom: 10px;
+  font-family: "OpenSans-Bold";
+  color: #9dacae;
+}
+
+.account-container {
+  margin-bottom: 30px;
+}

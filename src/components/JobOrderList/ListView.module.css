@@ -1,0 +1,7 @@
+.list-view {
+  background-color: #b6c7c9;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+}
