@@ -33,7 +33,8 @@ const JobOrderDetails = (props) => {
   const updateStatusHandler = (status) => {
     if (
       status.toLowerCase() === originalAssignment.status.toLowerCase() &&
-      selectedAssignment.findings === originalAssignment.findings
+      selectedAssignment.findings === originalAssignment.findings &&
+      selectedAssignment.dateCompleted === originalAssignment.dateCompleted
     ) {
       setSelectedAssignment((prevStatus) => {
         return {
@@ -58,7 +59,8 @@ const JobOrderDetails = (props) => {
     if (
       findings === originalAssignment.findings &&
       originalAssignment.status.toLowerCase() ===
-        originalAssignment.status.toLowerCase()
+        originalAssignment.status.toLowerCase() &&
+      selectedAssignment.dateCompleted === originalAssignment.dateCompleted
     ) {
       setSelectedAssignment((prevStatus) => {
         return {
@@ -74,6 +76,43 @@ const JobOrderDetails = (props) => {
 
     setSelectedAssignment((prevStatus) => {
       return { ...prevStatus, findings: findings, dateModified: new Date() };
+    });
+
+    setAllowSave(true);
+  };
+
+  const updateDateCompletedHandler = (dateCompleted) => {
+    if (
+      originalAssignment.dateCompleted === undefined &&
+      dateCompleted === ""
+    ) {
+      dateCompleted = undefined;
+    }
+
+    if (
+      selectedAssignment.findings === originalAssignment.findings &&
+      selectedAssignment.status.toLowerCase() ===
+        originalAssignment.status.toLowerCase() &&
+      dateCompleted === originalAssignment.dateCompleted
+    ) {
+      setSelectedAssignment((prevStatus) => {
+        return {
+          ...prevStatus,
+          dateCompleted: originalAssignment.dateCompleted,
+          dateModified: originalAssignment.dateModified,
+        };
+      });
+
+      setAllowSave(false);
+      return;
+    }
+
+    setSelectedAssignment((prevStatus) => {
+      return {
+        ...prevStatus,
+        dateCompleted: dateCompleted,
+        dateModified: new Date(),
+      };
     });
 
     setAllowSave(true);
@@ -107,6 +146,7 @@ const JobOrderDetails = (props) => {
           assignment={selectedAssignment}
           updateStatus={updateStatusHandler}
           updateFindings={updateFindingsHandler}
+          updateCompletedDate={updateDateCompletedHandler}
           updateHandler={updateHandler}
           allowSave={allowSave}
         />

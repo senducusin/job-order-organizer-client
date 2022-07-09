@@ -5,18 +5,6 @@ import classes from "./JobOrderSearch.module.css";
 const JobOrderSearch = (props) => {
   const onChangeHandler = (event) => {
     const keyword = event.target.value.toLowerCase();
-
-    // let result = props.accounts.filter((account) => {
-    //   return (
-    //     account.customer
-    //       .toLowerCase()
-    //       .includes(event.target.value.toLowerCase()) ||
-    //     account.accountNumber
-    //       .toLowerCase()
-    //       .includes(event.target.value.toLowerCase())
-    //   );
-    // });
-
     props.searchHandling(keyword);
   };
 

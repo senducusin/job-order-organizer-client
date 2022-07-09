@@ -10,6 +10,10 @@ const JobOrderDetailCell = (props) => {
     props.updateFindings(event.target.value);
   };
 
+  const dateOnChangeHandler = (event) => {
+    props.updateCompletedDate(event.target.value);
+  };
+
   const value = () => {
     switch (props.inputContainer) {
       case "fixed":
@@ -21,6 +25,18 @@ const JobOrderDetailCell = (props) => {
             value={props.value}
             onChange={textAreaOnChangeHandler}
           />
+        );
+      case "date":
+        return (
+          <div className={classes.value}>
+            {props.fixFieldValue}
+            <input
+              className={classes["date-picker"]}
+              type="date"
+              value={props.value}
+              onChange={dateOnChangeHandler}
+            />
+          </div>
         );
       case "multi-button":
         return (

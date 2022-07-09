@@ -100,10 +100,6 @@ function App() {
   const addAccountHandler = (account) => {
     db.put({ ...account, _id: account.accountNumber })
       .then(function (response) {
-        // setToShowAccounts((prevState) => {
-        //   return sorted([...prevState, account]);
-        // });
-
         setAccounts((prevState) => {
           let accounts = [...prevState, account];
 
@@ -130,10 +126,6 @@ function App() {
         return db.get(account.accountNumber);
       })
       .then(function (doc) {
-        // setToShowAccounts((prevState) => {
-        //   return updateAccount(prevState, doc);
-        // });
-
         setAccounts((prevState) => {
           let accounts = updateAccount(prevState, doc);
 
@@ -187,37 +179,41 @@ function App() {
   };
 
   const restoreBackup = (data) => {
-    let backup = JSON.parse(data.content);
-    db.bulkDocs(backup).then((result) => {
-      db.allDocs({
-        include_docs: true,
-        attachments: true,
-      })
-        .then(function (result) {
-          let completeAccounts = result.rows.map((row) => {
-            // to delete
-            return { ...row.doc, _deleted: true };
+    // Delete all existing
+    db.allDocs({
+      include_docs: true,
+      attachments: true,
+    }).then((result) => {
+      let completeAccounts = result.rows.map((row) => {
+        return { ...row.doc, _deleted: true };
+      });
 
-            // return row.doc;
-          });
+      db.bulkDocs(completeAccounts, (err, response) => {
+        if (err) {
+          return console.log(err);
+        }
 
-          // to delete
-          db.bulkDocs(completeAccounts, (err, reponse) => {
-            if (err) {
-              return console.log(err);
-            } else {
-              console.log(reponse);
-            }
-          });
+        // Import new data
+        let backup = JSON.parse(data.content);
+        db.bulkDocs(backup).then((result) => {
+          db.allDocs({
+            include_docs: true,
+            attachments: true,
+          })
+            .then((result) => {
+              let allAccounts = result.rows.map((row) => {
+                return row.doc;
+              });
 
-          setAccounts(completeAccounts);
-          setToShowAccounts(completeAccounts);
-          // electron.notificationApi.sendNotification(completeAccounts);
-          window.api.send("toMain", "woohoo!");
-        })
-        .catch(function (err) {
-          console.log(err);
+              setAccounts(sorted(allAccounts));
+              setToShowAccounts(sorted(allAccounts));
+              setSelectedAccount({});
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         });
+      });
     });
   };
 
@@ -228,20 +224,8 @@ function App() {
     })
       .then(function (result) {
         let completeAccounts = result.rows.map((row) => {
-          // to delete
-          // return { ...row.doc, _deleted: true };
-
           return row.doc;
         });
-
-        // to delete
-        // db.bulkDocs(completeAccounts, (err, reponse) => {
-        //   if (err) {
-        //     return console.log(err);
-        //   } else {
-        //     console.log(reponse);
-        //   }
-        // });
 
         setAccounts(sorted(completeAccounts));
         setToShowAccounts(sorted(completeAccounts));

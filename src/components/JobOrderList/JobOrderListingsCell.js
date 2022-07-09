@@ -1,4 +1,3 @@
-import FilterModes from "./FilterModes";
 import classes from "./JobOrderListingsCell.module.css";
 
 const JobOrderListingsCell = (props) => {
@@ -20,7 +19,6 @@ const JobOrderListingsCell = (props) => {
     if (containsInProgress) {
       statusClassNames = classes["status-with-alert"];
 
-      console.log(statusClassNames);
       return "In-progress";
     }
 

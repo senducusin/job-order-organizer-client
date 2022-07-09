@@ -62,7 +62,10 @@ const AssignmentCell = (props) => {
         isNewAccount={props.isNewAccount}
       />
 
-      <AssignmentCellRow category="Date" value={`${month} ${day}, ${year}`} />
+      <AssignmentCellRow
+        category="Job Order Date"
+        value={`${month} ${day}, ${year}`}
+      />
     </div>
   );
 };

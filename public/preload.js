@@ -1,14 +1,5 @@
 const { ipcRenderer, contextBridge } = require("electron");
 
-// contextBridge.exposeInMainWorld("electron", {
-//   notificationApi: {
-//     sendNotification(message) {
-//       ipcRenderer.send("notify", message);
-//     },
-//   },
-
-// });
-
 contextBridge.exposeInMainWorld("api", {
   send: (channel, data) => {
     // whitelist channels

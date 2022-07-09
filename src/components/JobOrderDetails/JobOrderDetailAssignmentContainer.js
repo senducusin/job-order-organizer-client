@@ -2,6 +2,8 @@ import classes from "./JobOrderDetailAssignmentContainer.module.css";
 import JobOrderDetailCell from "./JobOrderDetailCell";
 
 const JobOrderDetailAssignmentFixedContainer = (props) => {
+  const language = "en-US";
+
   const status =
     props.assignment.status === "" || props.assignment.status === undefined
       ? "none"
@@ -14,8 +16,14 @@ const JobOrderDetailAssignmentFixedContainer = (props) => {
       ? assignmentDate
       : new Date(props.assignment.dateModified);
 
+  const dateCompleted =
+    props.assignment.dateCompleted && new Date(props.assignment.dateCompleted);
+
   const getStringCompleteDate = (date) => {
-    const language = "en-US";
+    if (date === undefined || date === "") {
+      return "mm dd, yyyy";
+    }
+
     const month = date.toLocaleString(language, {
       month: "long",
     });
@@ -28,6 +36,21 @@ const JobOrderDetailAssignmentFixedContainer = (props) => {
     return `${month} ${day}, ${year}`;
   };
 
+  const getDateFormat = (date) => {
+    console.log(date);
+    if (date === undefined || date === "") {
+      return "";
+    }
+
+    const year = date.getFullYear();
+    const day = date.toLocaleString(language, {
+      day: "2-digit",
+    });
+    const month = (date.getMonth() + 1 < 10 ? "0" : "") + (date.getMonth() + 1);
+
+    return `${year}-${month}-${day}`;
+  };
+
   return (
     <div>
       <JobOrderDetailCell
@@ -38,17 +61,19 @@ const JobOrderDetailAssignmentFixedContainer = (props) => {
 
       <div className={classes.container}>
         <JobOrderDetailCell
-          category="last date modified"
-          value={getStringCompleteDate(modifiedDate)}
+          category="job order date"
+          value={getStringCompleteDate(assignmentDate)}
           inputContainer="fixed"
         />
 
         <div className={classes.spacer}></div>
 
         <JobOrderDetailCell
-          category="job order date"
-          value={getStringCompleteDate(assignmentDate)}
-          inputContainer="fixed"
+          category="Date Accomplished"
+          value={getDateFormat(dateCompleted)}
+          fixFieldValue={getStringCompleteDate(dateCompleted)}
+          inputContainer="date"
+          updateCompletedDate={props.updateCompletedDate}
         />
       </div>
 
