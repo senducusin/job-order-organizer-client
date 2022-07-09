@@ -1,0 +1,28 @@
+.content {
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  margin: 0 20% 30px 20%;
+  justify-content: center;
+}
+
+.spacer {
+  width: 10%;
+}
+
+.button {
+  width: 40%;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.proceed {
+  background-color: rgb(200, 0, 0);
+}
+
+.cancel {
+  background-color: grey;
+}
