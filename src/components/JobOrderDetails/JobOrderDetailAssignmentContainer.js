@@ -37,7 +37,6 @@ const JobOrderDetailAssignmentFixedContainer = (props) => {
   };
 
   const getDateFormat = (date) => {
-    console.log(date);
     if (date === undefined || date === "") {
       return "";
     }
