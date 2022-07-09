@@ -105,3 +105,6 @@ dist
 
 # PouchDB
 jobOrders/
+
+# Apple's mess
+.DS_Store
