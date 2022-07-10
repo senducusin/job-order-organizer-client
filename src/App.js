@@ -100,16 +100,18 @@ function App() {
   const addAccountHandler = (account) => {
     db.put({ ...account, _id: account.accountNumber })
       .then(function (response) {
-        setAccounts((prevState) => {
-          let accounts = [...prevState, account];
+        db.get(response.id).then(function (doc) {
+          setAccounts((prevState) => {
+            let accounts = [...prevState, doc];
 
-          setToShowAccounts((prevState) => {
-            return sorted([
-              ...filterAccountsToShow(searchKeyword, modeFilter, accounts),
-            ]);
+            setToShowAccounts((prevState) => {
+              return sorted([
+                ...filterAccountsToShow(searchKeyword, modeFilter, accounts),
+              ]);
+            });
+
+            return sorted(accounts);
           });
-
-          return sorted(accounts);
         });
       })
       .catch(function (err) {

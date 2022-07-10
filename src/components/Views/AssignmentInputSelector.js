@@ -1,7 +1,6 @@
 import classes from "./AssignmentInputSelector.module.css";
 import InputContainer from "./InputContainer";
 import { v4 as uuidv4 } from "uuid";
-import { useState, useRef } from "react";
 
 const AssignmentInputSelector = (props) => {
   const options = [`- Select ${props.label} -`, ...props.options].map(
@@ -10,7 +9,7 @@ const AssignmentInputSelector = (props) => {
 
   const selectOnChangeHandler = (event) => {
     if (event.target.value === "Other") {
-      props.onChangeHandler({ ...props.value, other: true });
+      props.onChangeHandler({ value: "", other: true });
     } else {
       props.onChangeHandler({ other: false, value: event.target.value });
     }
