@@ -118,12 +118,12 @@ function App() {
   };
 
   const updateAccountHandler = (account) => {
-    db.get(account.accountNumber)
+    db.get(account._id)
       .then(function (doc) {
         return db.put({ ...doc, assignments: account.assignments });
       })
       .then(function () {
-        return db.get(account.accountNumber);
+        return db.get(account._id);
       })
       .then(function (doc) {
         setAccounts((prevState) => {
@@ -199,6 +199,7 @@ function App() {
           db.allDocs({
             include_docs: true,
             attachments: true,
+            cache: false,
           })
             .then((result) => {
               let allAccounts = result.rows.map((row) => {
@@ -221,6 +222,7 @@ function App() {
     db.allDocs({
       include_docs: true,
       attachments: true,
+      cache: false,
     })
       .then(function (result) {
         let completeAccounts = result.rows.map((row) => {
@@ -249,7 +251,11 @@ function App() {
 
   return (
     <div className={classNames}>
-      <SideMenu import={importHandler} export={exportHandler} />
+      <SideMenu
+        import={importHandler}
+        export={exportHandler}
+        showAlert={accounts.length > 0}
+      />
       <ListView
         selectHandling={selectHandler}
         searchHandler={searchHandler}

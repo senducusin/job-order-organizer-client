@@ -6,7 +6,8 @@ const Alert = (props) => {
     <Modal onClose={props.onClose}>
       <h1 className={classes.content}>Warning!</h1>
       <h3 className={classes.content}>
-        Importing a file will remove all existing saved accounts and job orders.
+        Importing a backup file will REMOVE and REPLACE all saved accounts and
+        assignments.
       </h3>
       <h3 className={classes.content}>Do you want to proceed?</h3>
 

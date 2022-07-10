@@ -6,7 +6,11 @@ const SideMenu = (props) => {
   const [cartIsShown, setCartIsShown] = useState(false);
 
   const showCartHandler = () => {
-    setCartIsShown(true);
+    if (props.showAlert) {
+      setCartIsShown(true);
+    } else {
+      props.import();
+    }
   };
 
   const hideCartHandler = () => {
@@ -20,9 +24,10 @@ const SideMenu = (props) => {
 
   return (
     <Fragment>
-      {cartIsShown && (
+      {props.showAlert && cartIsShown && (
         <Alert onClose={hideCartHandler} onImport={importHandler} />
       )}
+
       <div className={classes.sidemenu}>
         <div className={classes.container}>
           <button className={classes.import} onClick={showCartHandler}>

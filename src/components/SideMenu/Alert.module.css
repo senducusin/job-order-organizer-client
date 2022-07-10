@@ -4,7 +4,7 @@
 
 .button-container {
   display: flex;
-  margin: 0 20% 30px 20%;
+  margin: 30px 20% 30px 20%;
   justify-content: center;
 }
 
@@ -23,6 +23,14 @@
   background-color: rgb(200, 0, 0);
 }
 
+.proceed:hover {
+  background-color: rgba(200, 0, 0, 0.4);
+}
+
 .cancel {
   background-color: grey;
+}
+
+.cancel:hover {
+  background-color: rgba(128, 128, 128, 0.4);
 }

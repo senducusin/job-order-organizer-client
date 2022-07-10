@@ -2,27 +2,29 @@ import classes from "./NewAssignment.module.css";
 import CloseButton from "../../Views/CloseButton";
 import { useState } from "react";
 import InputContainer from "../../Views/InputContainer";
+import AssignmentInputSelector from "../../Views/AssignmentInputSelector";
 
 const NewAssignment = (props) => {
-  const [assignment, setAssignment] = useState("");
+  const defaultSelctorInputValue = { other: false, value: "" };
+  const [assignment, setAssignment] = useState(defaultSelctorInputValue);
   const [date, setDate] = useState("");
-  const [status, setStatus] = useState("None");
+  const [status, setStatus] = useState(defaultSelctorInputValue);
   const [findings, setFindings] = useState("");
 
   const removeHandler = () => {
     props.onRemoveHandling(props.assignment.id);
   };
 
-  const assigneeOnchangeHandler = (event) => {
-    setAssignment(event.target.value);
+  const assignmentOnchangeHandler = (value) => {
+    setAssignment(value);
   };
 
   const dateOnchangeHandler = (event) => {
     setDate(event.target.value);
   };
 
-  const statusOnChangeHandler = (event) => {
-    setStatus(event.target.value);
+  const statusOnChangeHandler = (value) => {
+    setStatus(value);
   };
 
   const findingsOnchangeHandler = (event) => {
@@ -31,39 +33,59 @@ const NewAssignment = (props) => {
 
   const addNewAssignmentHandler = () => {
     props.addAssignment({
-      assignment: assignment,
+      assignment: assignment.value,
       date: date,
-      status: status,
+      status: status.value,
       findings: findings,
       id: props.id,
       edit: false,
       dateModified: new Date(),
     });
 
-    setAssignment("");
+    setAssignment(defaultSelctorInputValue);
     setDate("");
-    setStatus("");
+    setStatus(defaultSelctorInputValue);
     setFindings("");
   };
 
-  const validation = assignment.length > 0 && date.length > 0;
+  const validate = (stringValue) => {
+    if (
+      (stringValue.startsWith("- Select ") && stringValue.endsWith(" -")) ||
+      stringValue.length === 0
+    ) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const validation =
+    validate(assignment.value) && validate(status.value) && date.length > 0;
 
   return (
     <div className={classes.container}>
       <div className={classes.top}>
         <div className={classes.spacer}></div>
-        {/* <CloseButton onClickHandler={removeHandler} /> */}
       </div>
 
-      <InputContainer label="Assignment">
-        <input
-          className={classes.input}
-          type="text"
-          value={assignment}
-          onChange={assigneeOnchangeHandler}
-          disabled={props.disabled}
-        />
-      </InputContainer>
+      <AssignmentInputSelector
+        label="Assignment"
+        value={assignment}
+        onChangeHandler={assignmentOnchangeHandler}
+        disabled={props.disabled}
+        options={[
+          "Low Consumption",
+          "Zero Consumption",
+          "Stuck Meter",
+          "No Display",
+          "Illegally Reconnected",
+          "Creeping Meter",
+          "High Consumption",
+          "Relocate Meter",
+          "Check Meter",
+          "Other",
+        ]}
+      />
 
       <InputContainer label="Date">
         <input
@@ -75,18 +97,13 @@ const NewAssignment = (props) => {
         />
       </InputContainer>
 
-      <InputContainer label="Status">
-        <select
-          className={classes.select}
-          value={status}
-          onChange={statusOnChangeHandler}
-          disabled={props.disabled}
-        >
-          <option>None</option>
-          <option>In-progress</option>
-          <option>Inspected</option>
-        </select>
-      </InputContainer>
+      <AssignmentInputSelector
+        label="Status"
+        value={status}
+        onChangeHandler={statusOnChangeHandler}
+        disabled={props.disabled}
+        options={["None", "In-progress", "Inspected"]}
+      />
 
       <InputContainer label="Findings">
         <textarea
